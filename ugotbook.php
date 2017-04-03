@@ -10,9 +10,15 @@ $endpoint = $config['API']['endpoint'];
 $client_key = $config['API']['client_key'];
 $client_secret = $config['API']['client_secret'];
 
-// request patron using barcode
+// create API object for requests
 $api = new API($endpoint, $client_key, $client_secret);
+
+// request patron using barcode
 $patron = $api->fetchPatron('1234567890123');
 print_r($patron);
+
+// request a hold
+$res = $api->requestHold($patron, '1000011');
+print_r($res);
 
 ?>
