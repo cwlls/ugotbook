@@ -1,0 +1,13 @@
+; Replace all values with correct info
+
+[API]
+endpoint = "<API ENDPOINT>"
+client_key = "<CLIENT KEY>"
+client_secret = "<CLIENT SECRET>"
+
+[DNA]
+hostname = "<SQL SERVER>"
+dbase = "<DATABASE NAME>"
+port = "<PORT>"
+dbuser = "<USER>"
+dbpass = "<PASS>"
