@@ -40,14 +40,16 @@ class API {
 }
 
 /*
-* DNA class -- a class for Sierra DNA related call functions
-*/
+ * DNA class -- a class for Sierra DNA related call functions
+ * */
 class DNA {
-  public function __construct() {
-    
-  }
-  
-  public function __destruct() {
-    
-  }
+      public function __construct($dbhost, $dbport, $dbname, $dbuser, $dbpass) {
+              $dsn = 'pgsql:host=' . $dbhost . ';port=' . $dbport . ';dbname=' . $dbname;
+                  
+                  $this->connection = new PDO($dsn, $dbuser, $dbpass);
+                }
+        
+        public function query($stmt) {
+                return $this->connection->query($stmt)->fetchAll();
+                  }
 }
