@@ -1,5 +1,6 @@
 <?php namespace ugotbook;
 include_once 'sierra-api-client/Sierra.php'; use Sierra;
+use PDO;
 
 /*
 * API class -- a class for API call functions
