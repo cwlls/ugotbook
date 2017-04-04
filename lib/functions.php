@@ -41,7 +41,7 @@ class API {
    // Send e-mail notification to patron
   public function emailPatron($patron, $bib_id) {
     
-    $to = $patron['emails'][1];
+    $to = $patron['emails'][0];
     $homelibrary = $patron['homeLibraryCode'];
     if (preg_match("/.*@.*\..*/", $to) > 0) {
         $subject = 'You got Book!';

@@ -1,4 +1,4 @@
-#!/usr/bin/env php -q
+#!/usr/bin/env php
 <?php namespace ugotbook; 
 include_once('lib/functions.php');
 
@@ -32,6 +32,10 @@ print_r($holds);
 
 // request a hold
 $res = $api->requestHold($patron, '1000011');
+print_r($res);
+
+// attempt to send email
+$res = $api->emailPatron($patron, '1000011');
 print_r($res);
 
 // request a list of 10 bibs via DNA
