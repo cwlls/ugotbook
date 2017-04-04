@@ -1,6 +1,5 @@
 <?php namespace ugotbook;
-include_once 'Sierra.php'; use Sierra;
-use PDO;
+include_once 'sierra-api-client/Sierra.php'; use Sierra;
 
 /*
 * API class -- a class for API call functions
@@ -44,13 +43,11 @@ class API {
 * DNA class -- a class for Sierra DNA related call functions
 */
 class DNA {
-  public function __construct($dbhost, $dbport, $dbname, $dbuser, $dbpass) {
-    $dsn = 'pgsql:host=' . $dbhost . ';port=' . $dbport . ';dbname=' . $dbname;
+  public function __construct() {
     
-    $this->connection = new PDO($dsn, $dbuser, $dbpass);
   }
   
-  public function query($stmt) {
-    return $this->connection->query($stmt)->fetchAll(PDO::FETCH_GROUP);
+  public function __destruct() {
+    
   }
 }
