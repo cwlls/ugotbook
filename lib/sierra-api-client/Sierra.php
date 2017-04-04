@@ -75,7 +75,10 @@ class Sierra {
         }
 
         $response = $this->_request($this->config['endpoint'] . $resource, $params, $headers);
-        if ($response['status'] != 200) return null;
+        if ($response['status'] != 200) {
+          print('Response status: ' . $response['status']);
+          return null;
+        };
         
         return json_decode($response['body'], true);
     }

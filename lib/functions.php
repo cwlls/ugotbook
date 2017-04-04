@@ -52,6 +52,10 @@ class API {
   }
 }
   
+  public function fetchHolds($patron) {
+    return $this->connection->query('patrons/' . $patron['id'] . '/holds');
+  }
+  
 }
 
 /*

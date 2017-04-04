@@ -27,6 +27,9 @@ $db = new DNA($dbhost, $dbport, $dbname, $dbuser, $dbpass);
 $patron = $api->fetchPatron('1234567890123');
 print_r($patron);
 
+$holds = $api->fetchHolds($patron);
+print_r($holds);
+
 // request a hold
 $res = $api->requestHold($patron, '1000011');
 print_r($res);
