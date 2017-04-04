@@ -1,7 +1,8 @@
 <?php namespace ugotbook;
 include_once 'sierra-api-client/Sierra.php'; use Sierra;
 
-require '...\PHPMailerAutoload.php';
+require __DIR__ . '/vendor/autoload.php';
+use PHPMailer;
 
 use PDO;
 
@@ -47,7 +48,7 @@ class API {
 		$homelibrary = $patron['homeLibraryCode'];
   
   
-		if (preg_match("/.*@.*\..*/", $email) > 0) {
+		if (preg_match("/.*@.*\..*/", $to) > 0) {
 
 			//SMTP needs accurate times, and the PHP time zone MUST be set
 			//This should be done in your php.ini, but this is how to do it if you don't have access to that
