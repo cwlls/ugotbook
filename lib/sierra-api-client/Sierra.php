@@ -66,17 +66,24 @@ class Sierra {
  * @param boolean $marc True to have the response include MARC data
  * @return array Array of data
  */  
-    public function query($resource, $params = array(), $marc = false) {
+    public function query($resource, $params = array(), $marc = false, $type = 'get', $body = '') {
         if (!$this->_checkToken()) return null;
         
         $headers = array('Authorization: ' . $this->token['token_type'] . ' ' . $this->token['access_token']);
         if ($marc) {
             $headers[] = 'Accept: application/marc-in-json';
         }
+        
+        $response = '';
+        if ($type == 'get') {
+          $response = $this->_request($this->config['endpoint'] . $resource, $params, $headers);
+        } else {
+          $response = $this->_request($this->config['endpoint'] . $resource, $params, $headers, $type, $body);
+        }
 
-        $response = $this->_request($this->config['endpoint'] . $resource, $params, $headers);
         if ($response['status'] != 200) {
           print('Response status: ' . $response['status']);
+          print('Response body: ' . $response['body']);
           return null;
         };
         
@@ -137,15 +144,15 @@ class Sierra {
  * - 'header': The header information fo the server
  * - 'body': The body of the message
  */
-    private function _request($url, $params = array(), $header = array(), $type = 'get') {
+    private function _request($url, $params = array(), $header = array(), $type = 'get', $body = '') {
         $type = strtolower($type);
 
         $s = curl_init();
         
         if ($type == 'post') {
-            $header[] = 'Content-Type: application/x-www-form-urlencoded';
+            $header[] = 'Content-Type: application/json';
             curl_setopt($s, CURLOPT_POST, true);
-            curl_setopt($s, CURLOPT_POSTFIELDS, http_build_query($params));
+            curl_setopt($s, CURLOPT_POSTFIELDS, $body);
         }
         else {
             $url .= ($params ? '?' . http_build_query($params) : '');

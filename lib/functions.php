@@ -26,16 +26,15 @@ class API {
     // create an array to be encoded to json for POST body
     $hold_object = Array(
       'recordType' => 'b',
-      'recordNumber' => $bib_id,
+      'recordNumber' => (int)$bib_id,
       'pickupLocation' => $patron['homeLibraryCode']
     );
     
     // create an array for request parameters
-    $params = Array(
-      'type' => 'post'
-    );
+    $params = Array();
+    $json_body = json_encode($hold_object);
     
-    return $this->connection->query('patrons/' . $patron['id'] . '/holds/requests' , $params);
+    return $this->connection->query('patrons/' . $patron['id'] . '/holds/requests' , $params, false, 'post', $json_body);
   }
  
    // Send e-mail notification to patron
