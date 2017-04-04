@@ -5,10 +5,12 @@ include_once('lib/functions.php');
 // Read in configuration file
 $config = parse_ini_file('config.ini', $process_sections = true);
 
-// gather pieces of configuration
+// API Configuration
 $endpoint = $config['API']['endpoint'];
 $client_key = $config['API']['client_key'];
 $client_secret = $config['API']['client_secret'];
+
+// DNA Configuration
 $dbhost = $config['DNA']['hostname'];
 $dbport = $config['DNA']['port'];
 $dbname = $config['DNA']['database_name'];
