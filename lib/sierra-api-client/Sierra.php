@@ -87,7 +87,14 @@ class Sierra {
           return null;
         };
         
-        return json_decode($response['body'], true);
+        if ($type == 'get') {
+          return json_decode($response['body'], true);
+        } else {
+          $status = $response['status'];
+          $status = substr((string)$status,0,1);
+          return (int)$status;
+        }
+
     }
 
 /**
