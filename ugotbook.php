@@ -1,4 +1,4 @@
-#!/usr/bin/php -q
+#!/usr/bin/env php
 <?php namespace ugotbook;
 include_once('lib/functions.php');
 
