@@ -81,13 +81,20 @@ class Sierra {
           $response = $this->_request($this->config['endpoint'] . $resource, $params, $headers, $type, $body);
         }
 
-        if ($response['status'] != 200) {
-          print('Response status: ' . $response['status']);
-          print('Response body: ' . $response['body']);
-          return null;
-        };
+        // if ($response['status'] != 200) {
+//           print('Response status: ' . $response['status']);
+//           print('Response body: ' . $response['body']);
+//           return null;
+//         };
         
-        return json_decode($response['body'], true);
+        if ($type == 'get') {
+          return json_decode($response['body'], true);
+        } else {
+          $status = $response['status'];
+          $status = substr((string)$status,0,1);
+          return (int)$status;
+        }
+
     }
 
 /**
