@@ -44,8 +44,10 @@ foreach($result as $line) {
                 $patron=$api->fetchPatron($barcode);
                 //Attempts to make a request
                 $res=$api->requestHold($patron,$bib_id);
-                //Emails the patron
-                $res2 = $api->emailpatron($patron, $title);
+                //Emails the patron if hold successfully placed
+                if ($res == 2) {
+                    $res2 = $api->emailpatron($patron, $title);
+                }
 
 
             }
